@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sivaanandha Jodhida Maiyyam</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&family=Noto+Sans+Tamil:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:    '#0D0F1A',
+            'navy-light': '#171A2E',
+            gold:    '#C8A84B',
+            'gold-light': '#E2C97E',
+            ivory:   '#F2EDD7',
+            mauve:   '#8B6F8E',
+            charcoal:'#2A2D3E',
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            lato:   ['Lato', 'sans-serif'],
+            tamil:  ['Noto Sans Tamil', 'sans-serif'],
+          },
+        }
+      }
+    }
+
+    
+  </script>
+
+  <style>
+    :root {
+      --gold: #C8A84B;
+      --navy: #0D0F1A;
+      --ivory: #F2EDD7;
+      --mauve: #8B6F8E;
+    }
+
+    * { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--navy);
+      color: var(--ivory);
+      font-family: 'Lato', sans-serif;
+      overflow-x: hidden;
+    }
+
+    
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0D0F1A; }
+    ::-webkit-scrollbar-thumb { background: #C8A84B; border-radius: 3px; }
+
+    /* ── Mandala ── */
+    .mandala-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .mandala {
+      width: min(70vw, 600px);
+      height: min(70vw, 600px);
+      opacity: 0.08;
+    }
+    .mandala-outer { animation: spin-slow 60s linear infinite; }
+    .mandala-mid   { animation: spin-slow 40s linear infinite reverse; }
+    .mandala-inner { animation: spin-slow 25s linear infinite; }
+
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+
+    /* ── Gold gradient text ── */
+    .gold-text {
+      background: linear-gradient(135deg, #C8A84B 0%, #E2C97E 50%, #C8A84B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Glowing gold divider ── */
+    .gold-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #C8A84B, transparent);
+    }
+
+    /* ── Nav glass ── */
+    .nav-glass {
+      background: rgba(13, 15, 26, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200, 168, 75, 0.2);
+    }
+
+    /* ── Match making Service card ── */
+    .service-card {
+      background: linear-gradient(145deg,  #1a1428, #211535);
+      border: 1px solid rgba(200, 168, 75, 0.18);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(200, 168, 75, 0.6);
+      box-shadow: 0 12px 40px rgba(200, 168, 75, 0.12);
+    }
+
+
+/* ── Featured card (Birth PDF) ── */
+
+    .featured-card {
+      background: linear-gradient(145deg, #1a1428, #211535);
+      border: 1px solid rgba(200, 168, 75, 0.5);
+      box-shadow: 0 0 40px rgba(200, 168, 75, 0.1), inset 0 0 40px rgba(139, 111, 142, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    .featured-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top right, rgba(139,111,142,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    
+    
+    .featured-badge {
+      background: linear-gradient(135deg, #C8A84B, #E2C97E);
+      color: #0D0F1A;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      padding: 0.25rem 0.85rem;
+      border-radius: 100px;
+    }
+    .price-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #C8A84B;
+      line-height: 1;
+    }
+/* ── Service card 3D swiper  ── */
+.cs-card {
+  width: 300px;
+  height: 420px;                        /* tall vertical rectangle */
+  transform: translateX(-50%) translateY(-50%);
+  background: rgba(35,28,55,0.98);
+  border: 1px solid rgba(200,168,75,0.28);
+  border-radius: 22px;
+  padding: 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity  0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.cs-card.center-card {
+  border-color: rgba(200,168,75,0.55);  /* brighter border on active card */
+}
+
+/* Tamil label */
+.cs-card .c-tamil {
+  font-size: 12px;
+  color: #C8A84B;
+  opacity: 0.75;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+/* Card title */
+.cs-card .c-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 17px;                      /* was 13–15px, now clearly readable */
+  color: #F5F0E8;
+  margin-bottom: 14px;
+  line-height: 1.35;
+}
+
+/* Card description */
+.cs-card .c-desc {
+  font-size: 13px;                      /* was 11–12px, now comfortably readable */
+  font-weight: 400;                     /* was 300 (thin), now regular weight */
+  color: rgba(245,240,232,0.72);        /* brighter — was 0.55 */
+  line-height: 1.75;
+  flex: 1;
+}
+
+/* Inquire link */
+.cs-card .c-link {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  color: #C8A84B;
+  letter-spacing: 0.16em;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+/* Stage height — increase to fit taller cards */
+.cs-swiper-root {
+  height: 500px !important;
+}
+
+/* ── Swipe indicator button animation  ── */ 
+@keyframes nudge {
+    0%, 100% { transform: translateX(0);   opacity: 0.2; }
+    50%       { transform: translateX(5px); opacity: 1; }
+  }
+  .arrow-1 { animation: nudge 1.2s ease-in-out infinite 0s; }
+  .arrow-2 { animation: nudge 1.2s ease-in-out infinite 0.2s; }
+  .arrow-3 { animation: nudge 1.2s ease-in-out infinite 0.4s; }
+
+
+    /* ── Floating buttons ── */
+    .float-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      font-size: 1.3rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .float-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+    }
+    .float-phone    { background: linear-gradient(135deg, #C8A84B, #E2C97E); color: #0D0F1A; }
+    .float-whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; }
+
+
+    /* Floating buttons animations on hover */
+    .float-btn:hover i {
+      animation: shake 0.5s ease-in-out;
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(4, 120, 87, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(4, 120, 87, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(4, 120, 87, 0);
+      }
+    }
+    
+    @keyframes entrance {
+      0% {
+        opacity: 0;
+        transform: scale(0) rotate(-90deg);
+      }
+      60% {
+        transform: scale(1.2) rotate(10deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: rotate(0); }
+      20% { transform: rotate(-10deg); }
+      40% { transform: rotate(10deg); }
+      60% { transform: rotate(-10deg); }
+      80% { transform: rotate(10deg); }
+    }
+    
+
+    /* ── Star field ── */
+    .stars-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(200,168,75,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 55%, rgba(242,237,215,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 25%, rgba(200,168,75,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 65%, rgba(242,237,215,0.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 10%, rgba(200,168,75,0.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 20% 80%, rgba(242,237,215,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 68% 40%, rgba(200,168,75,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 42% 90%, rgba(242,237,215,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 78%, rgba(200,168,75,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5%  45%, rgba(242,237,215,0.4) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* ── Contact form ── */
+    .form-input {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200,168,75,0.2);
+      color: #F2EDD7;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: 'Lato', sans-serif;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: #C8A84B;
+      box-shadow: 0 0 0 3px rgba(200,168,75,0.12);
+    }
+    .form-input::placeholder { color: rgba(242,237,215,0.35); }
+
+    /* ── Nav mobile menu ── */
+    #mobile-menu {
+      transition: max-height 0.35s ease, opacity 0.35s ease;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+    #mobile-menu.open {
+      max-height: 400px;
+      opacity: 1;
+    }
+
+    /* ── Section fade-in ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Mandala petal helper ── */
+    .om-symbol { font-size: 3rem; fill: var(--gold); }
+
+    /* ── About photo frame ── */
+    .photo-frame {
+      border: 2px solid rgba(200,168,75,0.4);
+      box-shadow: 0 0 60px rgba(200,168,75,0.08), inset 0 0 30px rgba(139,111,142,0.06);
+    }
+
+    /* ── Testimonial ── */
+    .testimonial-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(200,168,75,0.12);
+      border-radius: 16px;
+    }
+/* ── Particle effects ── */
+
+    .heart-particle, .ring-burst, .spark {
+    position: fixed;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+  .heart-particle { z-index: 9999; line-height: 1; transform-origin: center center; }
+  .ring-burst     { z-index: 9998; border-radius: 9999px; }
+  .spark          { z-index: 9998; border-radius: 9999px; }
+
+
+  /* ── Glowing Effect on Birth chart PDF Card  ── */
+  
+  .glow-ring {
+    position: relative;
+    border-radius: 26px;
+    padding: 3px;
+  }
+  .glow-ring::before, .glow-ring::after {
+    content: '';
+    position: absolute;
+    border-radius: 26px;
+  }
+  .glow-ring::before {
+    inset: -8px;
+    border-radius: 32px;
+    filter: blur(8px);
+    z-index: 0;
+  }
+  .glow-ring::after {
+    inset: 0;
+    z-index: 1;
+  }
+  .glow-ring > * { position: relative; z-index: 2; }
+
+  /* ── Begin Matching Button ── */
+
+.begin-matching-btn {
+  color: #f0e6ff;
+  background: linear-gradient(135deg, #6b3fa0 0%, #8B6F8E 50%, #5a2d82 100%);
+  border: none;
+  transform: scale(1);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.begin-matching-btn:hover {
+  transform: scale(1.07);
+  filter: brightness(1.15);
+}
+
+.begin-matching-btn:active {
+  transform: scale(0.97);
+}
+
+  /* ── Explore service Button ── */
+
+.explore-service-btn {
+
+  border: none;
+  transform: scale(1);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.explore-service-btn:hover {
+  transform: scale(1.07);
+  filter: brightness(1.15);
+}
+
+.explore-service-btn:active {
+  transform: scale(0.97);
+}
+
+
+  /* ── Consult service Button ── */
+
+.consult-now-btn {
+
+  transform: scale(1);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.consult-now-btn:hover {
+  transform: scale(1.07);
+  filter: brightness(1.15);
+}
+
+.consult-now-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── WhatsApp us button (birth chart) ── */
+
+.whatsapp-btn {
+  transform: scale(1);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.07);
+  filter: brightness(1);
+}
+
+.whatsapp-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── Order via WhatsApp button (birth chart) ── */
+
+.ordervia-whatsapp-btn {
+  transform: scale(1);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.ordervia-whatsapp-btn:hover {
+  transform: scale(1.07);
+  filter: brightness(1);
+}
+
+.ordervia-whatsapp-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── Order via WhatsApp button (birth chart) ── */
+
+.google-review-card {
+  background: linear-gradient(145deg, #1a1428, #211535);
+  border: 1px solid rgba(200, 168, 75, 0.18);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.google-review-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(200, 168, 75, 0.6);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.35),
+    0 0 30px rgba(200, 168, 75, 0.18),
+    0 0 60px rgba(200, 168, 75, 0.08);
+}
+
+/* ── Google Review Text Truncation ── */
+
+.review-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: -webkit-line-clamp 0.2s ease;
+}
+
+.review-text.expanded {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  display: block;
+}
+
+@media (max-width: 1023px) and (min-width: 640px) {
+  .google-review-card:nth-child(1) {
+    grid-column: span 2;
+  }
+  .google-review-card:nth-child(1) .review-text {
+    -webkit-line-clamp: 8;
+    line-clamp: 8;
+  }
+}
+
+/* ── Google Review Button ── */
+
+.google-reviews-btn {
+  transform: scale(1);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.google-reviews-btn:hover {
+  transform: scale(1.07);
+  filter: brightness(1);
+}
+
+.google-reviews-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── contact us whatsapp Button ── */
+
+
+.chat-whatsapp-btn {
+
+   transform: scale(1);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.chat-whatsapp-btn:hover {
+
+  transform: scale(1.07);
+  filter: brightness(1);
+}
+
+.chat-whatsapp-btn:active {
+
+  transform: scale(0.97);
+}
+
+/* ── contact us Submit Enquiry Button ── */
+
+
+.submit-btn {
+
+   transform: scale(1);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.submit-btn:hover {
+
+  transform: scale(1.07);
+  filter: brightness(1);
+}
+
+.submit-btn:active {
+
+  transform: scale(0.97);
+}
+
+/* ── Trust Badges style ── */
+
+
+.trust-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 24px 0 32px;
+}
+
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.08);
+  color: #e8d9a8;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.badge-icon {
+  width: 16px;
+  height: 16px;
+  color: #D4AF37;
+  flex-shrink: 0;
+}
+
+@media (max-width: 639px) {
+  .trust-badges {
+    gap: 10px;
+  }
+  .badge-item {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+}
+
+/* ── Footer Social Icons style ── */
+
+
+.social-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--c), 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(var(--c));
+  font-size: 14px;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════ -->
+<nav id="navbar" class="nav-glass fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-2.5 group">
+        <span class="text-gold text-2xl" style="font-family:'Noto Sans Tamil'"></span>
+        <div>
+          <p class="font-cinzel font-semibold text-sm text-ivory leading-tight">Sivaanandha Jodhida Maiyyam </p>
+         <!-- <p class="font-tamil text-xs text-gold leading-tight">ஜோதிட மையம்</p>  -->
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-7">
+        <a href="#home"  class="font-lato text-sm text-ivory/70 hover:text-gold transition-colors duration-200">Home</a>
+        <a href="#services"  class="font-lato text-sm text-ivory/70 hover:text-gold transition-colors duration-200">Services</a>
+        <a href="#highlight" class="font-lato text-sm text-ivory/70 hover:text-gold transition-colors duration-200">Birth PDF</a>
+        <a href="#about"     class="font-lato text-sm text-ivory/70 hover:text-gold transition-colors duration-200">About</a>
+        <a href="#contact"   class="font-lato text-sm text-ivory/70 hover:text-gold transition-colors duration-200">Contact</a>
+        <a href="tel:+917200817179"
+           class="font-cinzel text-xs font-semibold tracking-widest border border-gold text-gold px-5 py-2 rounded-full hover:bg-gold hover:text-navy transition-all duration-200">
+          BOOK NOW
+        </a>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="menu-toggle" class="md:hidden text-gold text-2xl focus:outline-none" aria-label="Toggle menu">
+        <i class="fas fa-bars" id="menu-icon"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu">
+      <div class="pb-4 space-y-1 border-t border-gold/10 mt-1 pt-4">
+        <a href="#home"  class="block px-3 py-2 font-lato text-sm text-ivory/70 hover:text-gold">Home</a>
+        <a href="#services"  class="block px-3 py-2 font-lato text-sm text-ivory/70 hover:text-gold">Services</a>
+        <a href="#highlight" class="block px-3 py-2 font-lato text-sm text-ivory/70 hover:text-gold">Birth PDF</a>
+        <a href="#about"     class="block px-3 py-2 font-lato text-sm text-ivory/70 hover:text-gold">About</a>
+        <a href="#contact"   class="block px-3 py-2 font-lato text-sm text-ivory/70 hover:text-gold">Contact</a>
+        <a href="tel:+917200817179" class="block mx-3 mt-2 text-center font-cinzel text-xs tracking-widest border border-gold text-gold px-5 py-2 rounded-full">BOOK NOW</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<section id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-16 pb-32 overflow-hidden">
+
+  <!-- Star field -->
+  <div class="stars-bg"></div>
+
+  <!-- Mandala background -->
+  <div class="mandala-wrap">
+    <svg class="mandala" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <g class="mandala-outer" style="transform-origin:200px 200px">
+        <circle cx="200" cy="200" r="190" stroke="#C8A84B" stroke-width="0.8" stroke-dasharray="8 6"/>
+        <circle cx="200" cy="200" r="175" stroke="#C8A84B" stroke-width="0.4"/>
+        <!-- 12 petals outer -->
+        <g id="outer-petals">
+          <ellipse cx="200" cy="20" rx="8" ry="20" fill="#C8A84B"/>
+          <ellipse cx="200" cy="20" rx="8" ry="20" fill="#C8A84B" transform="rotate(30 200 200)"/>
+          <ellipse cx="200" cy="20" rx="8" ry="20" fill="#C8A84B" transform="rotate(60 200 200)"/>
+          <ellipse cx="200" cy="20" rx="8" ry="20" fill="#C8A84B" transform="rotate(90 200 200)"/>
+          <ellipse cx="200" cy="20" rx="8" ry="20" fill="#C8A84B" transform="rotate(120 200 200)"/>
+          <ellipse cx="200" cy="20" rx="8" ry="20" fill="#C8A84B" transform="rotate(150 200 200)"/>
+          <ellipse cx="200" cy="20" rx="8" ry="20" fill="#C8A84B" transform="rotate(180 200 200)"/>
+          <ellipse cx="200" cy="20" rx="8" ry="20" fill="#C8A84B" transform="rotate(210 200 200)"/>
+          <ellipse cx="200" cy="20" rx="8" ry="20" fill="#C8A84B" transform="rotate(240 200 200)"/>
+          <ellipse cx="200" cy="20" rx="8" ry="20" fill="#C8A84B" transform="rotate(270 200 200)"/>
+          <ellipse cx="200" cy="20" rx="8" ry="20" fill="#C8A84B" transform="rotate(300 200 200)"/>
+          <ellipse cx="200" cy="20" rx="8" ry="20" fill="#C8A84B" transform="rotate(330 200 200)"/>
+        </g>
+        <!-- 8-point star outer -->
+        <polygon points="200,40 210,190 200,360 190,190" fill="none" stroke="#C8A84B" stroke-width="0.6"/>
+        <polygon points="40,200 190,210 360,200 190,190" fill="none" stroke="#C8A84B" stroke-width="0.6"/>
+        <polygon points="86,86 196,194 314,314 204,206" fill="none" stroke="#C8A84B" stroke-width="0.6"/>
+        <polygon points="314,86 206,194 86,314 194,206" fill="none" stroke="#C8A84B" stroke-width="0.6"/>
+      </g>
+      <!-- Middle ring -->
+      <g class="mandala-mid" style="transform-origin:200px 200px">
+        <circle cx="200" cy="200" r="130" stroke="#C8A84B" stroke-width="0.6" stroke-dasharray="4 8"/>
+        <circle cx="200" cy="200" r="115" stroke="#C8A84B" stroke-width="0.3"/>
+        <!-- 8 petals mid -->
+        <ellipse cx="200" cy="78" rx="6" ry="16" fill="#C8A84B"/>
+        <ellipse cx="200" cy="78" rx="6" ry="16" fill="#C8A84B" transform="rotate(45 200 200)"/>
+        <ellipse cx="200" cy="78" rx="6" ry="16" fill="#C8A84B" transform="rotate(90 200 200)"/>
+        <ellipse cx="200" cy="78" rx="6" ry="16" fill="#C8A84B" transform="rotate(135 200 200)"/>
+        <ellipse cx="200" cy="78" rx="6" ry="16" fill="#C8A84B" transform="rotate(180 200 200)"/>
+        <ellipse cx="200" cy="78" rx="6" ry="16" fill="#C8A84B" transform="rotate(225 200 200)"/>
+        <ellipse cx="200" cy="78" rx="6" ry="16" fill="#C8A84B" transform="rotate(270 200 200)"/>
+        <ellipse cx="200" cy="78" rx="6" ry="16" fill="#C8A84B" transform="rotate(315 200 200)"/>
+      </g>
+      <!-- Inner -->
+      <g class="mandala-inner" style="transform-origin:200px 200px">
+        <circle cx="200" cy="200" r="70" stroke="#C8A84B" stroke-width="0.8"/>
+        <circle cx="200" cy="200" r="55" stroke="#C8A84B" stroke-width="0.4" stroke-dasharray="3 5"/>
+        <!-- 6 petals inner -->
+        <ellipse cx="200" cy="138" rx="5" ry="12" fill="#C8A84B"/>
+        <ellipse cx="200" cy="138" rx="5" ry="12" fill="#C8A84B" transform="rotate(60 200 200)"/>
+        <ellipse cx="200" cy="138" rx="5" ry="12" fill="#C8A84B" transform="rotate(120 200 200)"/>
+        <ellipse cx="200" cy="138" rx="5" ry="12" fill="#C8A84B" transform="rotate(180 200 200)"/>
+        <ellipse cx="200" cy="138" rx="5" ry="12" fill="#C8A84B" transform="rotate(240 200 200)"/>
+        <ellipse cx="200" cy="138" rx="5" ry="12" fill="#C8A84B" transform="rotate(300 200 200)"/>
+        <!-- Innermost dot -->
+        <circle cx="200" cy="200" r="8" fill="#C8A84B"/>
+        <circle cx="200" cy="200" r="18" stroke="#C8A84B" stroke-width="0.5"/>
+        <circle cx="200" cy="200" r="28" stroke="#C8A84B" stroke-width="0.3" stroke-dasharray="2 4"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Ambient gradient blobs -->
+  <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-mauve/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold/4 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Hero content -->
+  <div class="relative z-10 max-w-3xl mx-auto">
+    <p class="font-tamil text-gold text-base tracking-[0.3em] mb-6 opacity-80">ஓம் நமச்சிவாய</p>
+  <h1 class="font-cinzel font-bold leading-tight mb-2 " style="font-size: clamp(2rem, 6vw, 4rem); ">
+      <span class="gold-text">Sivaanandha Jodhida Maiyyam  </span>
+    </h1> 
+    
+
+    <h1 class="font-tamil font-bold leading-tight mb-6" style="font-size: clamp(1.5rem, 4vw, 3rem); color:#F2EDD7;">
+      சிவானந்த ஜோதிட மையம்
+    </h1>
+
+    <div class="gold-divider w-24 mx-auto mb-6"></div>
+
+    <p class="font-lato font-light text-ivory/70 mb-2 tracking-wide" style="font-size:clamp(0.9rem,2vw,1.1rem);">
+      Ancient Wisdom · Timeless Stars · Sacred Guidance
+    </p>
+    
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
+
+    <button>
+       <a href="#services"
+        class="explore-service-btn flex items-center gap-1.5 font-cinzel text-xs tracking-widest font-semibold bg-gradient-to-r from-gold to-gold-light text-navy px-8 py-3.5 rounded-full hover:shadow-lg hover:shadow-gold/30 transition-all duration-300">
+         <i class="fas fa-search text-xs "></i>EXPLORE SERVICES
+       </a>
+    </button>
+ 
+    <button>
+      <a href="#contact"
+      class="consult-now-btn flex items-center gap-1.5 font-cinzel text-xs tracking-widest font-semibold border border-gold/40 text-gold px-8 py-3.5 rounded-full hover:border-gold hover:bg-gold/5 transition-all duration-300">
+          <i class="fas fa-phone-alt text-xs"></i>CONSULT NOW
+      </a>
+   </button>
+  
+   </div>
+
+    <!-- Quick stats -->
+    <div class="flex items-center justify-center gap-8 sm:gap-14 mt-8">
+      <div>
+        <p class="font-cinzel text-2xl gold-text font-bold" data-target="20" data-suffix="+">20+</p>
+    
+        <p class="font-lato text-xs text-ivory/40">Years</p>
+      </div>
+      <div class="h-10 w-px bg-gold/20"></div>
+      <div>
+        <p class="font-cinzel text-2xl gold-text font-bold" data-target="25000" data-suffix="+">25000+</p>
+   
+        <p class="font-lato text-xs text-ivory/40">Consultations</p>
+      </div>
+      <div class="h-10 w-px bg-gold/20"></div>
+      <div>
+        <p class="font-cinzel text-2xl gold-text font-bold" data-target="99" data-suffix="%">99%</p>
+        
+        <p class="font-lato text-xs text-ivory/40">Satisfaction</p>
+      </div>
+    </div>
+  </div>
+
+  
+    </div>
+
+    <p style="text-align:center; font-family:'Poppins','Segoe UI',sans-serif; font-size:1.05rem; font-weight:600; letter-spacing:0.5px; background:linear-gradient(90deg,#d4af37,#f5e7a3,#d4af37); -webkit-background-clip:text; background-clip:text; color:transparent; margin-top:30px; text-transform:uppercase;">
+  ✨ Get Your Consultation Done in Just 10 Minutes Today!
+</p>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+    <p class="font-lato text-xs tracking-widest text-ivory">SCROLL</p>
+    <div class="w-px h-10 bg-gradient-to-b from-gold to-transparent"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SERVICES — 3D Coverflow Swiper
+═══════════════════════════════════════ -->
+<section id="services" class="py-24 px-4 relative overflow-hidden">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-cinzel font-bold text-3xl sm:text-4xl text-ivory mb-4">Our Sacred Services</h2>
+      <div class="gold-divider w-20 mx-auto"></div>
+    </div>
+
+    <!-- Swipe indicator button -->
+<div class="flex justify-center mt-6">
+  <button id="csSwipeBtn" class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-[#C8A84B]/40 bg-transparent text-[#C8A84B] text-xs tracking-widest uppercase font-semibold cursor-default select-none">
+    Swipe
+    <span class="flex items-center -space-x-1.5">
+      <svg class="arrow-1" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <svg class="arrow-2" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <svg class="arrow-3" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </button>
+</div>
+    
+
+    <!-- 3D Coverflow Stage -->
+    <div class="cs-swiper-root relative" style="height:480px; perspective:1100px; perspective-origin:50% 50%;">
+
+
+      <!-- Card 1 -->
+      <div class="cs-card absolute top-1/2 left-1/2 flex flex-col cursor-pointer" data-i="0"
+           style="width:280px; min-height:310px; background:rgba(35,28,55,0.95); border:1px solid rgba(200,168,75,0.22); border-radius:20px; padding:28px 26px 24px; will-change:transform; backface-visibility:hidden;">
+        <div class="flex items-center justify-center mb-4 flex-shrink-0 rounded-xl"
+             style="width:52px;height:52px;background:rgba(200,168,75,0.1);border:1px solid rgba(200,168,75,0.28);">
+          <i class="fas fa-star text-xl" style="color:#C8A84B;"></i>
+        </div>
+        <p class="font-tamil text-sm mb-1" style="color:#C8A84B;opacity:0.7;letter-spacing:0.08em;">ஜோதிடம்</p>
+        <h3 class="font-cinzel font-semibold mb-3 leading-snug" style="font-size:16px;color:#F5F0E8;">Astrology Reading</h3>
+        <p class="font-lato font-light flex-1 leading-relaxed" style="font-size:15px;color:rgba(245,240,232,0.55);">
+          Discover the cosmic blueprint written at the moment of your birth. Deep insights on life, career, health, and destiny through Vedic and Tamil astrology.
+        </p>
+        <button>
+          <a href="#contact" class="font-cinzel mt-4 tracking-widest text-center inline-block px-4 py-1.5 rounded-full hover:shadow-lg hover:shadow-gold/30 transition-all duration-200"
+       style=" background: linear-gradient(135deg, #C8A84B, #E2C97E); color:#0D0F1A; font-size:10px ;font-weight: bold; ">INQUIRE →</a>  
+        </button>
+     
+    </div>
+
+      <!-- Card 2 -->
+      <div class="cs-card absolute top-1/2 left-1/2 flex flex-col cursor-pointer" data-i="1"
+           style="width:280px; min-height:310px; background:rgba(35,28,55,0.95); border:1px solid rgba(200,168,75,0.22); border-radius:20px; padding:28px 26px 24px; will-change:transform; backface-visibility:hidden;">
+        <div class="flex items-center justify-center mb-4 flex-shrink-0 rounded-xl"
+             style="width:52px;height:52px;background:rgba(139,111,142,0.12);border:1px solid rgba(139,111,142,0.3);">
+          <i class="fas fa-heart text-xl" style="color:#8B6F8E;"></i>
+        </div>
+        <p class="font-tamil text-sm mb-1" style="color:#C8A84B;opacity:0.7;letter-spacing:0.08em;">கடந்த & எதிர்கால கணிப்பு</p>
+        <h3 class="font-cinzel font-semibold mb-3 leading-snug" style="font-size:16px;color:#F5F0E8;">Past & Future Prediction </h3>
+        <p class="font-lato font-light flex-1 leading-relaxed" style="font-size:15px;color:rgba(245,240,232,0.55);">
+         Discover insights into your past experiences and uncover guidance for the future. This practice helps you understand life patterns and prepare for upcoming opportunities or challenges.
+        </p>
+
+       <button>
+          <a href="#contact" class="font-cinzel mt-4 tracking-widest text-center inline-block px-4 py-1.5 rounded-full hover:shadow-lg hover:shadow-gold/30 transition-all duration-200"
+       style=" background: linear-gradient(135deg, #C8A84B, #E2C97E); color:#0D0F1A; font-size:10px ;font-weight: bold; ">INQUIRE →</a>  
+        </button>
+        
+      </div>
+
+      <!-- Card 3 -->
+      <div class="cs-card absolute top-1/2 left-1/2 flex flex-col cursor-pointer" data-i="2"
+           style="width:280px; min-height:310px; background:rgba(35,28,55,0.95); border:1px solid rgba(200,168,75,0.22); border-radius:20px; padding:28px 26px 24px; will-change:transform; backface-visibility:hidden;">
+        <div class="flex items-center justify-center mb-4 flex-shrink-0 rounded-xl"
+             style="width:52px;height:52px;background:rgba(200,168,75,0.1);border:1px solid rgba(200,168,75,0.22);">
+          <i class="fas fa-eye text-xl" style="color:#C8A84B;"></i>
+        </div>
+        <p class="font-tamil text-sm mb-1" style="color:#C8A84B;opacity:0.7;letter-spacing:0.08em;">எண்கணித நிபுணர்</p>
+        <h3 class="font-cinzel font-semibold mb-3 leading-snug" style="font-size:16px;color:#F5F0E8;">Numerology Expert</h3>
+        <p class="font-lato font-light flex-1 leading-relaxed" style="font-size:15px;color:rgba(245,240,232,0.55);">
+          Numbers hold deep meaning in shaping personality, destiny, and success. A numerology expert interprets these numbers to provide clarity, direction, and spiritual guidance for your journey.
+        </p>
+        <button>
+          <a href="#contact" class="font-cinzel mt-4 tracking-widest text-center inline-block px-4 py-1.5 rounded-full hover:shadow-lg hover:shadow-gold/30 transition-all duration-200"
+       style=" background: linear-gradient(135deg, #C8A84B, #E2C97E); color:#0D0F1A; font-size:10px ;font-weight: bold; ">INQUIRE →</a>  
+        </button>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="cs-card absolute top-1/2 left-1/2 flex flex-col cursor-pointer" data-i="3"
+           style="width:280px; min-height:310px; background:rgba(35,28,55,0.95); border:1px solid rgba(200,168,75,0.22); border-radius:20px; padding:28px 26px 24px; will-change:transform; backface-visibility:hidden;">
+        <div class="flex items-center justify-center mb-4 flex-shrink-0 rounded-xl"
+             style="width:52px;height:52px;background:rgba(200,168,75,0.1);border:1px solid rgba(200,168,75,0.22);">
+          <i class="fas fa-scroll text-xl" style="color:#C8A84B;"></i>
+        </div>
+        <p class="font-tamil text-sm mb-1" style="color:#C8A84B;opacity:0.7;letter-spacing:0.08em;"> தொழில் முன்கணிப்பு </p>
+        <h3 class="font-cinzel font-semibold mb-3 leading-snug" style="font-size:16px;color:#F5F0E8;">Business Prediction</h3>
+        <p class="font-lato font-light flex-1 leading-relaxed" style="font-size:15px;color:rgba(245,240,232,0.55);">
+          Gain foresight into your business growth, challenges, and opportunities. These predictions help entrepreneurs and professionals make informed decisions and plan strategically for success.
+        </p>
+        <button>
+          <a href="#contact" class="font-cinzel mt-4 tracking-widest text-center inline-block px-4 py-1.5 rounded-full hover:shadow-lg hover:shadow-gold/30 transition-all duration-200"
+       style=" background: linear-gradient(135deg, #C8A84B, #E2C97E); color:#0D0F1A; font-size:10px ;font-weight: bold; ">INQUIRE →</a>  
+        </button>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="cs-card absolute top-1/2 left-1/2 flex flex-col cursor-pointer" data-i="4"
+           style="width:280px; min-height:310px; background:rgba(35,28,55,0.95); border:1px solid rgba(200,168,75,0.22); border-radius:20px; padding:28px 26px 24px; will-change:transform; backface-visibility:hidden;">
+        <div class="flex items-center justify-center mb-4 flex-shrink-0 rounded-xl"
+             style="width:52px;height:52px;background:rgba(139,111,142,0.12);border:1px solid rgba(139,111,142,0.3);">
+          <i class="fas fa-gem text-xl" style="color:#8B6F8E;"></i>
+        </div>
+        <p class="font-tamil text-sm mb-1" style="color:#C8A84B;opacity:0.7;letter-spacing:0.08em;">முகூர்த்தம்</p>
+        <h3 class="font-cinzel font-semibold mb-3 leading-snug" style="font-size:16px;color:#F5F0E8;">Muhurtham Selection</h3>
+        <p class="font-lato font-light flex-1 leading-relaxed" style="font-size:15px;color:rgba(245,240,232,0.55);">
+         Begin every milestone — marriage, housewarming, business launch — at the most auspicious moment. Precise selection aligned to planetary hours and lunar nakshatras.
+        </p>
+        <button>
+          <a href="#contact" class="font-cinzel mt-4 tracking-widest text-center inline-block px-4 py-1.5 rounded-full hover:shadow-lg hover:shadow-gold/30 transition-all duration-200"
+       style=" background: linear-gradient(135deg, #C8A84B, #E2C97E); color:#0D0F1A; font-size:10px ;font-weight: bold; ">INQUIRE →</a>  
+        </button>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="cs-card absolute top-1/2 left-1/2 flex flex-col cursor-pointer" data-i="5"
+           style="width:280px; min-height:310px; background:rgba(35,28,55,0.95); border:1px solid rgba(200,168,75,0.22); border-radius:20px; padding:28px 26px 24px; will-change:transform; backface-visibility:hidden;">
+        <div class="flex items-center justify-center mb-4 flex-shrink-0 rounded-xl"
+             style="width:52px;height:52px;background:rgba(200,168,75,0.1);border:1px solid rgba(200,168,75,0.22);">
+          <i class="fas fa-calendar-alt text-xl" style="color:#C8A84B;"></i>
+        </div>
+        <p class="font-tamil text-sm mb-1" style="color:#C8A84B;opacity:0.7;letter-spacing:0.08em;">கைரேகை </p>
+        <h3 class="font-cinzel font-semibold mb-3 leading-snug" style="font-size:16px;color:#F5F0E8;">Palm Reading</h3>
+        <p class="font-lato font-light flex-1 leading-relaxed" style="font-size:15px;color:rgba(245,240,232,0.55);">
+          Palmistry reveals secrets hidden in the lines of your hand. By studying these patterns, palm reading offers insights into health, fortune, relationships, and overall life direction.
+        </p>
+        <button>
+          <a href="#contact" class="font-cinzel mt-4 tracking-widest text-center inline-block px-4 py-1.5 rounded-full hover:shadow-lg hover:shadow-gold/30 transition-all duration-200"
+       style=" background: linear-gradient(135deg, #C8A84B, #E2C97E); color:#0D0F1A; font-size:10px ;font-weight: bold; ">INQUIRE →</a>  
+        </button>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="cs-card absolute top-1/2 left-1/2 flex flex-col cursor-pointer" data-i="6"
+           style="width:280px; min-height:310px; background:rgba(35,28,55,0.95); border:1px solid rgba(200,168,75,0.22); border-radius:20px; padding:28px 26px 24px; will-change:transform; backface-visibility:hidden;">
+        <div class="flex items-center justify-center mb-4 flex-shrink-0 rounded-xl"
+             style="width:52px;height:52px;background:rgba(200,168,75,0.1);border:1px solid rgba(200,168,75,0.22);">
+          <i class="fas fa-calendar-alt text-xl" style="color:#C8A84B;"></i>
+        </div>
+        <p class="font-tamil text-sm mb-1" style="color:#C8A84B;opacity:0.7;letter-spacing:0.08em;">குழந்தைகளின் எதிர்கால கல்வி</p>
+        <h3 class="font-cinzel font-semibold mb-3 leading-snug" style="font-size:16px;color:#F5F0E8;">Children future education</h3>
+        <p class="font-lato font-light flex-1 leading-relaxed" style="font-size:15px;color:rgba(245,240,232,0.55);">
+          Understand a child’s talents, strengths, and academic potential. This guidance helps parents plan for their children’s educational journey and nurture their future success.
+        </p>
+        <button>
+          <a href="#contact" class="font-cinzel mt-4 tracking-widest text-center inline-block px-4 py-1.5 rounded-full hover:shadow-lg hover:shadow-gold/30 transition-all duration-200"
+       style=" background: linear-gradient(135deg, #C8A84B, #E2C97E); color:#0D0F1A; font-size:10px ;font-weight: bold; ">INQUIRE →</a>  
+        </button>
+      </div>
+
+      
+
+    </div>
+
+    <div class="flex justify-center items-center gap-2 mt-8" id="csDots"></div>
+
+
+  </div>
+  
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     HIGHLIGHT — BIRTH PDF (₹200)
+═══════════════════════════════════════ -->
+
+
+
+<section id="highlight" class="py-20 px-4 relative">
+
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-mauve/5 to-transparent pointer-events-none"></div>
+
+  <div class="max-w-4xl mx-auto">
+
+    <!-- Heading -->
+    <div class="text-center mb-12 reveal">
+      <h2 class="font-cinzel font-bold text-3xl sm:text-4xl text-ivory mb-4">Featured Offering</h2>
+      <div class="gold-divider w-20 mx-auto"></div>
+    </div>
+
+    <div class="glow-ring" id="glowRing">
+      <div class="featured-card rounded-3xl p-6 sm:p-8 lg:p-12 reveal">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center gap-8 lg:gap-10">
+
+          <!-- ── LEFT: Info ── -->
+          <div class="flex-1 w-full">
+
+            <!-- Badge -->
+            <div class="flex items-center gap-3 mb-6">
+              <span class="featured-badge">MOST POPULAR</span>
+            </div>
+
+            <!-- Icon -->
+            <div class="fas fa-file-pdf text-gold text-5xl mb-4"></div>
+
+            <!-- Tamil label -->
+            <p class="font-tamil text-gold text-xs tracking-wider mb-1 opacity-70">ஜாதக PDF</p>
+
+            <!-- Title -->
+            <h3 class="font-cinzel font-bold text-ivory text-2xl sm:text-3xl mb-4">
+              Birth Chart PDF
+            </h3>
+
+            <!-- Description -->
+            <p class="font-lato font-light text-ivory/60 text-sm sm:text-base leading-relaxed mb-6">
+              Get your comprehensive Tamil Jathakam as a downloadable PDF. Includes Rasi,
+              Navamsam chart, Home, property, wealth, planetary positions, and personalized
+              life-phase analysis.
+            </p>
+
+            <!-- Features -->
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-3 text-sm font-lato text-ivory/60">
+                <i class="fas fa-check-circle text-gold text-xs flex-shrink-0"></i>
+                Rasi &amp; Navamsa Chart
+              </li>
+              <li class="flex items-center gap-3 text-sm font-lato text-ivory/60">
+                <i class="fas fa-check-circle text-gold text-xs flex-shrink-0"></i>
+                Planetary strengths &amp; doshas
+              </li>
+              <li class="flex items-center gap-3 text-sm font-lato text-ivory/60">
+                <i class="fas fa-check-circle text-gold text-xs flex-shrink-0"></i>
+                Home, property &amp; wealth analysis
+              </li>
+              <li class="flex items-center gap-3 text-sm font-lato text-ivory/60">
+                <i class="fas fa-check-circle text-gold text-xs flex-shrink-0"></i>
+                Career, health &amp; relationship forecasts
+              </li>
+              <li class="flex items-center gap-3 text-sm font-lato text-ivory/60">
+                <i class="fas fa-check-circle text-gold text-xs flex-shrink-0"></i>
+                Delivered via WhatsApp / Email within 30 minutes
+              </li>
+            </ul>
+
+            <!-- ✅ BUTTON — centered on mobile, left on desktop -->
+            <div class="flex justify-center lg:justify-start">
+              <a href="#contact"
+                 class="ordervia-whatsapp-btn inline-flex items-center gap-2 font-cinzel text-xs tracking-widest
+                        font-semibold bg-gradient-to-r from-gold to-gold-light text-navy
+                        px-8 py-3.5 rounded-full hover:shadow-lg hover:shadow-gold/30
+                        whitespace-nowrap">
+                <i class="fab fa-whatsapp text-sm"></i>
+                ORDER VIA WHATSAPP
+              </a>
+            </div>
+          </div>
+
+          <!-- ── RIGHT: Price Box ── -->
+          <!-- On mobile: full width. On desktop: fixed 224px sidebar -->
+          <div class="w-full lg:w-56 flex-shrink-0">
+            <div class="rounded-2xl p-6 text-center"
+                 style="background: rgba(200,168,75,0.06); border: 1px solid rgba(200,168,75,0.25);">
+
+              <p class="font-lato text-xs text-ivory/40 tracking-widest uppercase mb-1">Only</p>
+              <p class="font-lato text-xl text-ivory/40 line-through mb-1">₹500</p>
+              <p class="price-tag">₹200</p>
+              <p class="font-tamil text-gold text-xs mt-1">மட்டுமே</p>
+
+              <div class="gold-divider my-5"></div>
+
+              <p class="font-lato text-xs text-ivory/40 mb-3">Includes full PDF report</p>
+
+              <div class="flex justify-center">
+                <div class="inline-flex items-center gap-1.5 bg-gold/10 rounded-full px-3 py-1.5">
+                  <i class="fas fa-bolt text-gold text-xs"></i>
+                  <span class="font-cinzel text-xs text-gold">30 MINUTES DELIVERY</span>
+                </div>
+              </div>
+
+              <div class="mt-5 space-y-2">
+                <p class="font-lato text-xs text-ivory/35 ">Send birth details to:</p>
+                <button>
+               <a href="https://wa.me/917200817179?text=I%20want%20to%20order%20Birth%20Chart%20PDF"
+                   target="_blank"
+                   class=" whatsapp-btn flex items-center justify-center gap-2 rounded-2xl py-2.5 px-8 "
+                   style="background: linear-gradient(135deg, #25D366, #128C7E); color:#fffffb; box-shadow:0 8px 30px rgba(37,211,102,0.2) ; " >
+
+                  <i class="fab fa-whatsapp"></i>
+                  <span class="font-lato text-sm">WhatsApp Us</span>
+                </a>
+                </button>
+                
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+
+
+<!-- ═══════════════════════════════════════
+     MATCHMAKING — DETAILED CARD
+═══════════════════════════════════════ -->
+<section id="matching" class="py-20 px-4">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="text-center mb-12 reveal">
+      <p class="font-tamil text-gold text-sm tracking-widest mb-3 opacity-70">திருமண பொருத்தம்</p>
+      <h2 class="font-cinzel font-bold text-3xl sm:text-4xl text-ivory mb-4">Marriage Matchmaking</h2>
+      <div class="gold-divider w-20 mx-auto mb-6"></div>
+      <p class="font-lato font-light text-ivory/50 max-w-xl mx-auto text-sm leading-relaxed">
+        Two souls bound by the stars. Our expert compares Jathakams with sacred care — analysing all ten poruthams to bless your union with love, longevity, and prosperity.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 reveal">
+
+      <!-- What we check -->
+      <div class="service-card rounded-2xl p-8">
+        <h4 class="font-cinzel font-semibold text-ivory text-lg mb-6 flex items-center gap-3">
+          <i class="fas fa-heart text-mauve"></i>
+          10 Porutham Analysis
+        </h4>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="flex items-center gap-2 text-sm font-lato text-ivory/60">
+            <i class="fas fa-dot-circle text-gold text-xs"></i> Dinam
+          </div>
+          <div class="flex items-center gap-2 text-sm font-lato text-ivory/60">
+            <i class="fas fa-dot-circle text-gold text-xs"></i> Ganam
+          </div>
+          <div class="flex items-center gap-2 text-sm font-lato text-ivory/60">
+            <i class="fas fa-dot-circle text-gold text-xs"></i> Mahendram
+          </div>
+          <div class="flex items-center gap-2 text-sm font-lato text-ivory/60">
+            <i class="fas fa-dot-circle text-gold text-xs"></i> Stree Dheerga
+          </div>
+          <div class="flex items-center gap-2 text-sm font-lato text-ivory/60">
+            <i class="fas fa-dot-circle text-gold text-xs"></i> Yoni
+          </div>
+          <div class="flex items-center gap-2 text-sm font-lato text-ivory/60">
+            <i class="fas fa-dot-circle text-gold text-xs"></i> Rasi
+          </div>
+          <div class="flex items-center gap-2 text-sm font-lato text-ivory/60">
+            <i class="fas fa-dot-circle text-gold text-xs"></i> Rasiyathipati
+          </div>
+          <div class="flex items-center gap-2 text-sm font-lato text-ivory/60">
+            <i class="fas fa-dot-circle text-gold text-xs"></i> Vashyam
+          </div>
+          <div class="flex items-center gap-2 text-sm font-lato text-ivory/60">
+            <i class="fas fa-dot-circle text-gold text-xs"></i> Rajju
+          </div>
+          <div class="flex items-center gap-2 text-sm font-lato text-ivory/60">
+            <i class="fas fa-dot-circle text-gold text-xs"></i> Vetham
+          </div>
+        </div>
+
+        <div class="gold-divider my-6"></div>
+
+        <p class="font-lato text-xs text-ivory/40 leading-relaxed">
+          Chevvai dosha, Sarpa dosha &amp; Naga dosha checks included. Remedies suggested where needed.
+        </p>
+      </div>
+
+      <!-- How it works -->
+      <div class="service-card rounded-2xl p-8">
+        <h4 class="font-cinzel font-semibold text-ivory text-lg mb-6 flex items-center gap-3">
+          <i class="fas fa-moon text-gold"></i>
+          How It Works
+        </h4>
+        <div class="space-y-6">
+          <div class="flex gap-4">
+            <div class="w-7 h-7 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="font-cinzel text-gold text-xs">1</span>
+            </div>
+            <div>
+              <p class="font-lato font-semibold text-ivory text-sm mb-1">Share Birth Details</p>
+              <p class="font-lato text-xs text-ivory/45 leading-relaxed">Provide date, time &amp; place of birth for both bride and groom via WhatsApp or the form below.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-7 h-7 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="font-cinzel text-gold text-xs">2</span>
+            </div>
+            <div>
+              <p class="font-lato font-semibold text-ivory text-sm mb-1">Expert Analysis</p>
+              <p class="font-lato text-xs text-ivory/45 leading-relaxed">Our astrologer prepares a detailed Jathaka Porutham report covering all 10 poruthams.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-7 h-7 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="font-cinzel text-gold text-xs">3</span>
+            </div>
+            <div>
+              <p class="font-lato font-semibold text-ivory text-sm mb-1">Receive Your Report</p>
+              <p class="font-lato text-xs text-ivory/45 leading-relaxed">Get a comprehensive PDF report with recommendations and pariharam (remedies) if required.</p>
+            </div>
+          </div>
+        </div>
+
+        
+  <!-- <a href="#contact"
+           class="mt-8 flex items-center justify-center gap-2 font-cinzel text-xs tracking-widest font-semibold border border-mauve/40 text-mauve px-6 py-3 rounded-full hover:bg-mauve/10 hover:border-mauve transition-all duration-300">
+          <i class="fas fa-heart text-xs"></i> BEGIN MATCHING
+        </a> -->
+
+        <a href="#contact"
+   onclick="blastHearts(event)"
+   class="begin-matching-btn mt-8 mx-auto flex items-center justify-center gap-2 font-cinzel text-xs tracking-widest font-semibold px-8 py-3.5 rounded-full transition-all duration-300">
+  <i class="fas fa-heart text-xs"></i> BEGIN MATCHING
+</a>
+      
+      </div>
+  
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ═══════════════════════════════════════
+     ABOUT US
+═══════════════════════════════════════ -->
+<section id="about" class="py-24 px-4 relative">
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-charcoal/30 to-transparent pointer-events-none"></div>
+
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <h2 class="font-cinzel font-bold text-3xl sm:text-4xl text-ivory mb-4">About Us</h2>
+      <div class="gold-divider w-20 mx-auto"></div>
+    </div>
+
+    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 reveal">
+
+      <!-- Astrologer Visual -->
+       <div class="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 flex-shrink-0 relative">
+        <div class="w-full h-full rounded-full photo-frame overflow-hidden"
+             style="background: linear-gradient(135deg, #171A2E, #221530);">
+          <img src="assets/Yogi sivaanandha jothidar1.svg"
+               alt="Sivaanandha Jothidar"
+               class="w-full h-full object-contain" />
+        </div>
+        <!-- Gold ring -->
+        <div class="absolute inset-0 rounded-full border border-gold/20 scale-110"></div>
+        <div class="absolute inset-0 rounded-full border border-gold/10 scale-125"></div>
+      </div>
+
+      <!-- About text -->
+      <div class="flex-1 text-center lg:text-left">
+        <h3 class="font-cinzel font-bold text-2xl gold-text mb-1"> Yogi Sivaanandham </h3>
+        <p class="font-tamil text-ivory/40 text-sm mb-6">யோகி சிவானந்தம் </p>
+
+        <p class="font-lato font-light text-ivory/65 text-sm sm:text-base leading-relaxed mb-5">
+          With over <strong class="text-gold font-normal">20+ years of dedicated practice</strong> in Jothidam, Yogi Sivaanandham has guided thousands of families across Tamil Nadu  with wisdom and compassion.
+           His readings are known for their rare depth of knowledge with practical guidance that has transformed lives.
+           And beyond astrology, Yogi Sivaanandham is also a <strong class="text-gold font-normal">Yoga therapy expert</strong> with more than 25 years of expertise, based in Chennai, Tamil Nadu. 
+        </p>
+        <p class="font-lato font-light text-ivory/55 text-sm leading-relaxed mb-8">
+          Sivaanandha Jodhida Maiyyam was founded with a single mission: to make authentic, compassionate astrological guidance accessible to all. Every consultation is conducted with sacred intent, personal attention, and respect for the ancient tradition of Jothidam.
+        </p>
+
+        <!-- Trust badges -->
+        <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+          <div class="flex items-center gap-2 text-sm font-lato text-ivory/50">
+            <i class="fas fa-check text-gold text-xs"></i>
+           Trusted by 10000+ families
+          </div>
+          <div class="flex items-center gap-1 text-sm font-lato text-ivory/50">
+            <i class="fas fa-check text-gold text-xs"></i>
+            20+ Years of Expertise
+          </div>
+          <div class="flex items-center gap-2 text-sm font-lato text-ivory/50">
+            <i class="fas fa-check text-gold text-xs"></i>
+            Quick Consultation 
+          </div>
+             
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ═══════════════════════════════════════
+     GOOGLE REVIEWS
+═══════════════════════════════════════ -->
+<section id="google-reviews" class="py-20 px-4 relative">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Header row -->
+    <div class="flex flex-col sm:flex-row items-center sm:items-end justify-between gap-5 mb-10 reveal">
+      <div class="flex items-center gap-3">
+        <img src="assets/Google_2015_logo.svg"
+             alt="Google" class="h-10 w-auto" />
+        <span class="font-lato text-xl text-ivory font-semibold">Reviews</span>
+        <span class="font-lato text-ivory/80 text-xl ml-1 font-bold">4.9</span>
+        <span class="text-gold text-2xl tracking-tighter">★★★★★</span>
+      </div>
+ 
+ <a href="https://share.google/7UTNNTtVMRgLR9uZ3"
+         target="_blank" rel="noopener"
+         class="google-reviews-btn font-cinzel text-xs tracking-widest font-bold bg-gradient-to-r from-gold to-gold-light text-navy px-7 py-3 rounded-full hover:shadow-lg hover:shadow-gold/30 ">
+        REVIEW US ON GOOGLE
+      </a>
+     
+    </div>
+
+    <!-- Reviews Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Review 1 -->
+      <div class="google-review-card rounded-2xl p-6 reveal flex flex-col">
+        <div class="flex items-center gap-3 mb-3">
+          <img src="assets/S yuvarani.png"
+               alt="S.Yuvarani" class="w-11 h-11 rounded-full object-cover flex-shrink-0" />
+          <div>
+            <p class="font-cinzel text-ivory text-sm font-semibold">S.Yuvarani</p>
+            <span class="text-gold text-xl tracking-tighter">★★★★★</span>
+          </div>
+        </div>
+        <p class="font-lato font-light text-ivory/65 text-sm leading-relaxed review-text flex-1" data-full="I had a very good experience with this Jothida Nilayam. The astrologer explained everything clearly and gave practical remedies. Predictions were accurate and helpful. Highly recommend to others.">
+         I had a very good experience with this Jothida Nilayam. The astrologer explained everything clearly and gave practical remedies. Predictions were accurate and helpful. Highly recommend to others."
+        </p>
+        <button class="read-more-btn self-start text-left font-cinzel text-gold text-xs tracking-widest mt-3 hover:text-gold-light transition-colors">READ MORE</button>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="google-review-card rounded-2xl p-6 reveal flex flex-col">
+        <div class="flex items-center gap-3 mb-3">
+          <img src="assets/Logaa.png"
+               alt="loga Holidays" class="w-11 h-11 rounded-full object-cover flex-shrink-0" />
+          <div>
+            <p class="font-lato text-ivory text-l font-semibold">Loga Holidays</p>
+            <span class="text-gold text-xl tracking-tighter">★★★★★</span>
+          </div>
+        </div>
+        <p class="font-lato font-light text-ivory/65 text-sm leading-relaxed review-text flex-1" data-full="I’m Loganathan from Madurai, and I had a truly insightful experience with Sivaanandha Jodhida Maiyam. Their guidance was clear, genuine, and deeply rooted in tradition. I appreciated the time and care they took to explain everything in detail, and their predictions felt both thoughtful and accurate. The atmosphere was peaceful, and the service was professional yet personal. Highly recommended for anyone seeking clarity and spiritual direction.
+
+       Thank you for your support and blessings sir ">
+
+          I’m Loganathan from Madurai, and I had a truly insightful experience with Sivaanandha Jodhida Maiyam. Their guidance was clear, genuine, and deeply rooted in tradition. I appreciated the time and care they took to explain everything in detail, and their predictions felt both thoughtful and accurate. The atmosphere was peaceful, and the service was professional yet personal. Highly recommended for anyone seeking clarity and spiritual direction.
+
+      Thank you for your support and blessings sir 
+        </p>
+        <button class="read-more-btn self-start text-left font-cinzel text-gold text-xs tracking-widest mt-3 hover:text-gold-light transition-colors">READ MORE</button>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="google-review-card rounded-2xl p-6 reveal flex flex-col">
+        <div class="flex items-center gap-3 mb-3">
+          <img src="assets/Jaya Giri.png"
+               alt="Jaya Giri" class="w-11 h-11 rounded-full object-cover flex-shrink-0" />
+          <div>
+            <p class="font-cinzel text-ivory text-sm font-semibold">Jaya Giri</p>
+            <span class="text-gold text-xl tracking-tighter">★★★★★</span>
+          </div>
+        </div>
+        <p class="font-lato font-light text-ivory/65 text-sm leading-relaxed review-text flex-1" data-full="He has assessed very well my current situation and predicted properly
+          And he guide me how to over come the current situation
+          With god siva blessing it will recover soon
+          Thank you">
+          He has assessed very well my current situation and predicted properly
+          And he guide me how to over come the current situation
+          With god siva blessing it will recover soon
+          Thank you
+        </p>
+        <button class="read-more-btn self-start text-left font-cinzel text-gold text-xs tracking-widest mt-3 hover:text-gold-light transition-colors">READ MORE</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CONTACT FORM
+═══════════════════════════════════════ -->
+<section id="contact" class="py-24 px-4 relative">
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-mauve/4 to-transparent pointer-events-none"></div>
+
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <h2 class="font-cinzel font-bold text-3xl sm:text-4xl text-ivory mb-4">Get in Touch</h2>
+      <div class="gold-divider w-20 mx-auto mb-6"></div>
+      <p class="font-lato text-ivory/50 text-lg mt-2 max-w-md mx-auto">
+        Share your birth details or questions.</p>
+      <p class="font-lato text-ivory/50 text-lg mt-2 max-w-md mx-auto">We respond within <strong class="font-semibold text-gold">10 minutes</strong> via WhatsApp or call.</p>
+    </div>
+
+    <div class="trust-badges reveal">
+  <div class="badge-item">
+    <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+      <line x1="8" y1="21" x2="16" y2="21"></line>
+      <line x1="12" y1="17" x2="12" y2="21"></line>
+    </svg>
+    <span>Online Consultation</span>
+  </div>
+
+  <div class="badge-item">
+    <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+    </svg>
+    <span>Quick Service</span>
+  </div>
+
+  <div class="badge-item">
+    <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+    </svg>
+    <span>100% Satisfaction</span>
+  </div>
+</div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 reveal">
+
+      <!-- Contact Info -->
+      <div class="lg:col-span-2 space-y-6">
+
+        <div class="service-card rounded-2xl p-6">
+          <div class="space-y-5">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i class="fas fa-phone text-gold text-sm"></i>
+              </div>
+              <div>
+                <p class="font-cinzel text-xs text-gold tracking-widest mb-1">PHONE</p>
+                <a href="tel:+917200817179" class="font-lato text-ivory text-sm hover:text-gold transition-colors">+91 72008 17179</a>
+                <p class="font-lato text-ivory/50 text-xs mt-0.5">Working Hours : Mon – Sun</p>
+                <p class="font-lato text-ivory/50 text-xs mt-0.5">Morning Sessions : 10 AM – 1 PM</p>
+                <p class="font-lato text-ivory/50 text-xs mt-0.5">Evening Sessions : 4 PM  – 8 PM</p>
+              </div>
+            </div>
+
+            <div class="gold-divider"></div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i class="fab fa-whatsapp text-[#25D366] text-sm"></i>
+              </div>
+              <div>
+                <p class="font-cinzel text-xs text-gold tracking-widest mb-1">WHATSAPP</p>
+                <a href="https://wa.me/917200817179" target="_blank" class="font-lato text-ivory text-sm hover:text-gold transition-colors">+91 72008 17179</a>
+                <p class="font-lato text-ivory/50 text-xs mt-0.5">Reply within 10 minutes</p>
+              </div>
+            </div>
+
+            <div class="gold-divider"></div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-gold/10 border border-gold/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i class="fas fa-map-marker-alt text-gold text-sm"></i>
+              </div>
+              <div>
+                <p class="font-cinzel text-xs text-gold tracking-widest mb-1">LOCATION</p>
+                <a href="https://maps.app.goo.gl/BRU1MxoLnKiVcG6u7" target="_blank" class="font-lato text-ivory text-sm hover:text-gold transition-colors">110/5, 2nd Floor, Vanavil Apartments, E Main Rd, Pioneer Colony, Anna Nagar West Extension, Chennai, Tamil Nadu 600101</a>
+                <p class="font-lato text-ivory/50 text-xs mt-0.5">Online consultations available</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick WhatsApp -->
+        <a href="https://wa.me/917200817179?text=Vanakkam!%20I%20would%20like%20to%20consult%20for%20astrology."
+           target="_blank"
+           class=" chat-whatsapp-btn flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-cinzel text-xs tracking-widest font-semibold transition-all duration-300"
+           style="background: linear-gradient(135deg, #25D366, #128C7E); color:#fff; box-shadow:0 8px 30px rgba(37,211,102,0.2);">
+          <i class="fab fa-whatsapp text-lg"></i>
+          CHAT ON WHATSAPP
+        </a>
+      </div>
+
+      
+      <!-- Form -->
+<div class="lg:col-span-3">
+  <div class="service-card rounded-2xl p-8">
+    <form id="contact-form" class="space-y-5">
+      <input type="hidden" name="access_key" value="532ba3f2-40ee-45a9-b39c-3b958cadd092">
+      <input type="hidden" name="subject" value="New Contact Form Submission - Sivaanandha Jodhida Maiyyam">
+      <input type="hidden" name="from_name" value="Sivaanandha Jodhida Maiyyam Contact Form">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label class="font-cinzel text-xs text-gold tracking-widest block mb-2">YOUR NAME</label>
+          <input type="text" name="name" placeholder="Full Name" class="form-input" required />
+        </div>
+        <div>
+          <label class="font-cinzel text-xs text-gold tracking-widest block mb-2">MOBILE</label>
+          <input type="tel" name="mobile" placeholder="+91 XXXXX XXXXX" class="form-input" required />
+        </div>
+      </div>
+
+      <div>
+        <label class="font-cinzel text-xs text-gold tracking-widest block mb-2">SERVICE</label>
+        <select name="service" class="form-input" style="background:rgba(255,255,255,0.04); cursor:pointer;">
+          <option value="" style="background:#171A2E;">Select a Service</option>
+          <option value="birth-pdf" style="background:#171A2E;">Astrology Reading</option>
+          <option value="astrology" style="background:#171A2E;">Past & Future Prediction</option>
+          <option value="matching" style="background:#171A2E;">Numerology Expert</option>
+          <option value="prasnam" style="background:#171A2E;">Business Prediction</option>
+          <option value="nadi" style="background:#171A2E;">Muhurtham Selection</option>
+          <option value="gemstone" style="background:#171A2E;">Palm Reading</option>
+          <option value="muhurtham" style="background:#171A2E;">Children future education</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label class="font-cinzel text-xs text-gold tracking-widest block mb-2">DATE OF BIRTH</label>
+          <input type="date" name="dob" class="form-input" style="color-scheme:dark;" />
+        </div>
+        <div>
+          <label class="font-cinzel text-xs text-gold tracking-widest block mb-2">BIRTH TIME</label>
+          <input type="time" name="birth_time" class="form-input" style="color-scheme:dark;" />
+        </div>
+      </div>
+
+      <div>
+        <label class="font-cinzel text-xs text-gold tracking-widest block mb-2">BIRTH PLACE</label>
+        <input type="text" name="birth_place" placeholder="City, District, Country" class="form-input" />
+      </div>
+
+      <div>
+        <label class="font-cinzel text-xs text-gold tracking-widest block mb-2">MESSAGE</label>
+        <textarea name="message" rows="3" placeholder="Your question or any specific concerns..." class="form-input resize-none"></textarea>
+      </div>
+
+      <!-- Honeypot field to prevent spam -->
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
+
+      <button type="submit" id="submit-btn"
+              class="submit-btn w-full font-cinzel text-xs tracking-widest font-bold py-4 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
+              style="background: linear-gradient(135deg, #C8A84B, #E2C97E); color:#0D0F1A;">
+        SUBMIT ENQUIRY
+      </button>
+
+      <p id="form-error" class="hidden text-center text-red-400 text-sm mt-2">
+        Something went wrong. Please try again or call us directly.
+      </p>
+    </form>
+
+    <!-- Success message -->
+    <div id="form-success" class="hidden text-center py-6">
+      <i class="fas fa-check-circle text-gold text-4xl mb-4"></i>
+      <h4 class="font-cinzel text-ivory text-lg mb-2">Received!</h4>
+      <p class="font-tamil text-ivory/50 text-sm">நன்றி! நாங்கள் விரைவில் தொடர்பு கொள்வோம்.</p>
+      <p class="font-lato text-ivory/40 text-xs mt-1">We'll contact you within 30 minutes.</p>
+
+      <button id="send-another-btn"
+              class="font-cinzel text-xs tracking-widest font-bold py-3 px-6 rounded-full mt-6 transition-all duration-300"
+              style="background: linear-gradient(135deg, #C8A84B, #E2C97E); color:#0D0F1A;">
+        SEND ANOTHER ENQUIRY
+      </button>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer class="py-12 px-4 border-t border-gold/10 reveal">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="text-center sm:text-left">
+        <div class="flex items-center gap-2.5 justify-center sm:justify-start mb-2">
+          <a href="#home" class="font-cinzel font-semibold text-sm text-ivory hover:text-gold">Sivaanandha Jodhida Maiyyam</a>
+        </div>
+        <p class="font-lato text-xs text-ivory/50">© 2026 All rights reserved. Tamil Nadu, India.</p>
+      </div>
+      
+      
+
+      <div class="flex items-center gap-3">
+        <a href="tel:+917200817179" class="social-icon hover:text-gold"><i class="fas fa-phone"></i></a>
+        <a href="https://wa.me/917200817179" target="_blank" class="social-icon hover:text-gold"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/share/18wCz7jH9s/" target="_blank" class="social-icon hover:text-gold"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/sivaanandha_jodhida_maiyam?igsh=cnpscHlxcnhwbW05" target="_blank" class="social-icon hover:text-gold"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com/@healthastroscience595?si=Whkx0R25DZBRXnBC" target="_blank" class="social-icon hover:text-gold"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <div class="gold-divider mt-8 mb-5"></div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="font-tamil text-center text-ivory/50 text-xs">
+        ஜோதிடம் என்பது வாழ்வை வழிநடத்தும் ஒரு புனித கலை
+      </p>
+      <div class="flex items-center gap-5">
+        <a href="#home" class="font-lato text-xs text-ivory/50 hover:text-gold transition-colors">Home</a>
+        <a href="#services" class="font-lato text-xs text-ivory/50 hover:text-gold transition-colors">Services</a>
+        <a href="#contact" class="font-lato text-xs text-ivory/50 hover:text-gold transition-colors">Contact</a>
+        <a href="#highlight" class="font-lato text-xs text-ivory/50 hover:text-gold transition-colors">Birth Chart PDF</a>
+        <a href="#matching" class="font-lato text-xs text-ivory/50 hover:text-gold transition-colors">Marriage Match making</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     FLOATING BUTTONS
+═══════════════════════════════════════ -->
+
+<div class="floating-contact fixed bottom-6 right-5 flex flex-col items-center gap-3 z-50">
+
+  <!-- Back to top (appears on scroll)
+   
+  <button id="back-top"
+          onclick="window.scrollTo({top:0,behavior:'smooth'})"
+          class="float-btn"
+          style="background:rgba(42,45,62,0.9); border:1px solid rgba(200,168,75,0.3); color:#C8A84B; font-size:1rem; opacity:0; pointer-events:none; transition:opacity 0.3s ease;">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  -->
+  
+  <!-- Phone -->
+  <a href="tel:+917200817179" class="float-btn float-phone" title="Call Us">
+    <i class="fas fa-phone"></i>
+  </a>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/917200817179?text=Vanakkam!%20I%20want%20to%20consult%20for%20astrology."
+     target="_blank" class="float-btn float-whatsapp" title="WhatsApp Us">
+     
+    <i class="fab fa-whatsapp text-xl"></i>
+  </a>
+</div>
+
+<!-- ═══════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════ -->
+
+<script>
+
+     // ── Contact Form js script ──
+
+
+const contactForm = document.getElementById('contact-form');
+  const formSuccess = document.getElementById('form-success');
+  const formError = document.getElementById('form-error');
+  const submitBtn = document.getElementById('submit-btn');
+  const sendAnotherBtn = document.getElementById('send-another-btn');
+
+  contactForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    formError.classList.add('hidden');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'SENDING...';
+
+    const formData = new FormData(contactForm);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: json
+      });
+
+      const result = await response.json();
+
+      if (response.status === 200) {
+        contactForm.classList.add('hidden');
+        formSuccess.classList.remove('hidden');
+      } else {
+        console.error('Web3Forms error:', result);
+        formError.classList.remove('hidden');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      formError.classList.remove('hidden');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'SUBMIT ENQUIRY';
+    }
+  });
+
+  sendAnotherBtn.addEventListener('click', function () {
+    contactForm.reset();
+    formSuccess.classList.add('hidden');
+    contactForm.classList.remove('hidden');
+  });
+  
+
+     // ── Google Review Cards ──
+
+document.querySelectorAll('.read-more-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.google-review-card');
+    const textEl = card.querySelector('.review-text');
+    const isExpanded = textEl.classList.contains('expanded');
+
+    if (isExpanded) {
+      textEl.classList.remove('expanded');
+      textEl.textContent = textEl.dataset.full.length > 140
+        ? textEl.dataset.full.slice(0, 140).trim() + ' …'
+        : textEl.dataset.full;
+      btn.textContent = 'READ MORE';
+    } else {
+      textEl.classList.add('expanded');
+      textEl.textContent = textEl.dataset.full;
+      btn.textContent = 'READ LESS';
+    }
+  });
+});
+
+  // ── Service card 3D Coverflow Swiper ──────────────────────────
+
+(function () {
+  const cards  = Array.from(document.querySelectorAll('.cs-card'));
+  const dotsEl = document.getElementById('csDots');
+  if (!cards.length || !dotsEl) return;
+
+  const total = cards.length;
+  let current = 0, startX = 0, isDragging = false, dragDelta = 0;
+
+  const CFG = {
+  spread:    260,    // wider gap between cards
+  rotY:      38,     // rotation angle of side cards
+  scaleSide: 0.78,   // side cards slightly bigger than before
+  scaleFar:  0.58,
+  zCenter:   0,
+  zSide:    -60,
+  zFar:     -130,
+  opSide:    0.55,
+  opFar:     0.25,
+};
+
+  function getPos(diff) {
+  const abs = Math.abs(diff), sign = diff > 0 ? 1 : -1;
+  if (diff === 0) return { x:0,                      z:0,    ry:0,                  sc:1,            op:1,         zi:10, blur:0 };
+  if (abs === 1)  return { x:sign*CFG.spread,         z:-60,  ry:-sign*CFG.rotY,     sc:CFG.scaleSide,op:CFG.opSide,zi:7,  blur:2 };
+  if (abs === 2)  return { x:sign*CFG.spread*1.85,    z:-130, ry:-sign*CFG.rotY*1.1, sc:CFG.scaleFar, op:CFG.opFar, zi:4,  blur:4 };
+  return                 { x:sign*CFG.spread*2.5,     z:-190, ry:-sign*CFG.rotY*1.2, sc:0.42,         op:0,         zi:1,  blur:6 };
+}
+  function render() {
+  cards.forEach((card, i) => {
+    let diff = i - current;
+    if (diff >  total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
+    const p = getPos(diff);
+    card.style.transform     = `translateX(calc(-50% + ${p.x}px)) translateY(-50%) translateZ(${p.z}px) rotateY(${p.ry}deg) scale(${p.sc})`;
+    card.style.opacity       = p.op;
+    card.style.zIndex        = p.zi;
+    card.style.filter        = diff === 0 ? 'none' : `blur(${p.blur}px)`;
+    card.style.pointerEvents = diff === 0 ? 'auto' : 'none';
+    card.classList.toggle('center-card', diff === 0);
+  });
+  dotsEl.querySelectorAll('.cs-dot').forEach((d, i) => d.classList.toggle('on', i === current));
+}
+
+  function goTo(idx) { current = ((idx % total) + total) % total; render(); }
+
+
+  cards.forEach((c, i) => c.addEventListener('click', () => { if (i !== current) goTo(i); }));
+
+  const stage = document.querySelector('.cs-swiper-root');
+  stage.addEventListener('mousedown',  e => { isDragging=true; startX=e.clientX; stage.style.cursor='grabbing'; });
+  window.addEventListener('mousemove', e => { if (isDragging) dragDelta = e.clientX - startX; });
+  window.addEventListener('mouseup',   () => {
+    if (!isDragging) return; isDragging=false; stage.style.cursor='default';
+    if (dragDelta < -60) goTo(current+1);
+    else if (dragDelta > 60) goTo(current-1);
+    dragDelta = 0;
+  });
+  stage.addEventListener('touchstart', e => { isDragging=true; startX=e.touches[0].clientX; }, { passive:true });
+  stage.addEventListener('touchmove',  e => { if (isDragging) dragDelta = e.touches[0].clientX - startX; }, { passive:true });
+  stage.addEventListener('touchend',   () => {
+    if (!isDragging) return; isDragging=false;
+    if (dragDelta < -60) goTo(current+1);
+    else if (dragDelta > 60) goTo(current-1);
+    dragDelta = 0;
+  });
+
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('span');
+    d.className = 'cs-dot' + (i === 0 ? ' on' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  }
+
+  render();
+   // ── Swipe button ──
+  const swipeBtn = document.getElementById('csSwipeBtn');
+  if (swipeBtn) swipeBtn.addEventListener('click', () => goTo(current + 1));
+
+  // ── Auto swipe every 30 seconds ──
+  let autoTimer = setInterval(() => goTo(current + 1), 6000);
+
+  // Reset timer on any manual interaction
+  function resetTimer() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goTo(current + 1), 6000);
+  }
+
+  stage.addEventListener('touchend', resetTimer);
+  stage.addEventListener('mouseup', resetTimer);
+  dotsEl.addEventListener('click', resetTimer);
+  if (swipeBtn) swipeBtn.addEventListener('click', resetTimer);
+
+})();
+
+
+  //-- Blast hearts animation on button click
+  const COLORS = [
+    '#e8476a','#ff6b9d','#c0225e','#ff3366',
+    '#ff85a1','#ff0055','#d63384','#ff4d7d',
+    '#ffd6e0','#ffb3c1'
+  ];
+  const HEART_EMOJIS = [
+    '❤️','🧡','💛','💚','💙','💜','🩷','❤️‍🔥','💖','💗','💓','💞'
+    
+  ];
+
+  let blastCount = 0;
+
+  function blastHearts(e) {
+    // Blast origin = center of the clicked button
+    const rect = e.currentTarget.getBoundingClientRect();
+    const ox   = rect.left + rect.width  / 2;
+    const oy   = rect.top  + rect.height / 2;
+
+    const burstCount = Math.min(18 + Math.floor(blastCount / 3), 40);
+    blastCount += burstCount;
+
+    spawnRingBurst(ox, oy);
+    spawnSparks(ox, oy, 12);
+    spawnHearts(ox, oy, burstCount);
+  }
+
+  function spawnRingBurst(ox, oy) {
+    for (let r = 0; r < 3; r++) {
+      const ring = document.createElement('div');
+      ring.className = 'ring-burst';
+      const size = 10 + r * 8;
+      Object.assign(ring.style, {
+        width:  `${size}px`,
+        height: `${size}px`,
+        left:   `${ox - size / 2}px`,
+        top:    `${oy - size / 2}px`,
+        border: `2px solid ${COLORS[r % COLORS.length]}99`,
+      });
+      document.body.appendChild(ring);
+
+      ring.animate([
+        { transform: 'scale(1)',             opacity: 0.9 },
+        { transform: `scale(${8 + r * 3})`, opacity: 0   }
+      ], {
+        duration: 520 + r * 80,
+        delay:    r * 40,
+        easing:   'ease-out',
+        fill:     'forwards'
+      }).onfinish = () => ring.remove();
+    }
+  }
+
+  function spawnSparks(ox, oy, count) {
+    for (let i = 0; i < count; i++) {
+      const spark = document.createElement('div');
+      spark.className = 'spark';
+      const size  = 3 + Math.random() * 4;
+      const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4;
+      const dist  = 60 + Math.random() * 90;
+      const tx    = Math.cos(angle) * dist;
+      const ty    = Math.sin(angle) * dist;
+      Object.assign(spark.style, {
+        width:      `${size}px`,
+        height:     `${size}px`,
+        background: color,
+        left:       `${ox - size / 2}px`,
+        top:        `${oy - size / 2}px`,
+      });
+      document.body.appendChild(spark);
+
+      spark.animate([
+        { transform: 'translate(0,0) scale(1)',                   opacity: 1 },
+        { transform: `translate(${tx}px,${ty + 30}px) scale(0)`, opacity: 0 }
+      ], {
+        duration: 400 + Math.random() * 300,
+        easing:   'ease-out',
+        fill:     'forwards'
+      }).onfinish = () => spark.remove();
+    }
+  }
+
+  function spawnHearts(ox, oy, count) {
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className   = 'heart-particle';
+        el.textContent = HEART_EMOJIS[Math.floor(Math.random() * HEART_EMOJIS.length)];
+        const fontSize = 14 + Math.random() * 22;
+        Object.assign(el.style, {
+          fontSize: `${fontSize}px`,
+          left:     `${ox}px`,
+          top:      `${oy}px`,
+        });
+        document.body.appendChild(el);
+
+        const angle    = -Math.PI / 2 + (Math.random() - 0.5) * Math.PI * 1.4;
+        const speed    = 140 + Math.random() * 200;
+        const tx       = Math.cos(angle) * speed;
+        const ty       = Math.sin(angle) * speed;
+        const gravity  = 80  + Math.random() * 120;
+        const spin     = (Math.random() - 0.5) * 720;
+        const duration = 900  + Math.random() * 700;
+        const scaleEnd = 0.2  + Math.random() * 0.5;
+
+        el.animate([
+          {
+            transform: `translate(-50%,-50%) translate(0px,0px) rotate(0deg) scale(1)`,
+            opacity: 1
+          },
+          {
+            transform: `translate(-50%,-50%) translate(${tx * .4}px,${ty * .4 - gravity * .1}px) rotate(${spin * .3}deg) scale(${0.9 + Math.random() * .3})`,
+            opacity: 1,
+            offset: 0.3
+          },
+          {
+            transform: `translate(-50%,-50%) translate(${tx}px,${ty + gravity}px) rotate(${spin}deg) scale(${scaleEnd})`,
+            opacity: 0
+          }
+        ], {
+          duration,
+          easing:  'cubic-bezier(0.25,0.46,0.45,0.94)',
+          fill:    'forwards'
+        }).onfinish = () => el.remove();
+
+      }, i * 18 + Math.random() * 30);
+    }
+  }
+  // blastHearts() function ends here 
+  
+  // ── Mobile Menu Toggle ──
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon   = document.getElementById('menu-icon');
+
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+    menuIcon.className = mobileMenu.classList.contains('open')
+      ? 'fas fa-times' : 'fas fa-bars';
+  });
+
+  // Close mobile menu on link click
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuIcon.className = 'fas fa-bars';
+    });
+  });
+
+  // ── Navbar shrink on scroll ──
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 60) {
+      nav.style.borderBottomColor = 'rgba(200,168,75,0.35)';
+    } else {
+      nav.style.borderBottomColor = 'rgba(200,168,75,0.2)';
+    }
+
+    // Back to top button
+    const btn = document.getElementById('back-top');
+    btn.style.opacity = window.scrollY > 400 ? '1' : '0';
+    btn.style.pointerEvents = window.scrollY > 400 ? 'auto' : 'none';
+  });
+
+  // ── Scroll reveal ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(r => observer.observe(r));
+
+  // Stagger children inside reveal groups
+  document.querySelectorAll('.grid').forEach(grid => {
+    const cards = grid.querySelectorAll('.reveal');
+    cards.forEach((card, i) => {
+      card.style.transitionDelay = `${i * 0.08}s`;
+    });
+  });
+
+  // ── Contact form ──
+   // Function to show success message
+    function showSuccessMessage() {
+      document.getElementById('contactForm').classList.add('hidden');
+      document.getElementById('successMessage').classList.remove('hidden');
+      
+      // Reset form after successful submission
+      setTimeout(function() {
+        document.getElementById('contactForm').reset();
+      }, 500);
+    }
+    
+    // Initialize Lucide icons
+    document.addEventListener('DOMContentLoaded', function() {
+      lucide.createIcons();
+      
+      // Add form submission handling
+      const form = document.getElementById('contactForm');
+      form.addEventListener('submit', function(e) {
+        // Form will submit normally to Web3Forms
+        // The success message will be shown after a short delay
+        // This allows time for the form to be submitted
+      });
+    });
+
+  // ── Smooth scroll for anchor links ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 64;
+        window.scrollTo({
+          top: target.getBoundingClientRect().top + window.scrollY - offset,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // ── Quick Stats Counting Animation ──
+   document.addEventListener('DOMContentLoaded', () => {
+  function animateCount(el) {
+  const target = +el.dataset.target;
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  const start = performance.now();
+  
+  function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+  
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const val = Math.round(ease(p) * target);
+    el.textContent = val.toLocaleString() + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  }
+  
+  requestAnimationFrame(step); // ✅ this stays INSIDE animateCount, outside step
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateCount(e.target);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('[data-target]').forEach(el => observer.observe(el));
+});
+  
+// ── Birth chart PDF Glow Ring Animation ── 
+  let angle = 0;
+  const ring = document.getElementById('glowRing');
+  const style = document.createElement('style');
+  ring.appendChild(style);
+
+  function animate() {
+    angle = (angle + 1.2) % 360;
+    style.textContent = `
+      #glowRing::before { background: conic-gradient(from ${angle}deg,
+        transparent 0%, rgba(245,217,122,0.55) 15%,
+        transparent 32%, transparent 100%); }
+      #glowRing::after { background: conic-gradient(from ${angle}deg,
+        #3a2800 0%, #b8943f 8%, #f5d97a 15%,
+        #b8943f 22%, #3a2800 30%, #1a1530 50%,
+        #3a2800 70%, #b8943f 78%, #f5d97a 85%,
+        #b8943f 92%, #3a2800 100%); }
+    `;
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+
+   // Floating Contact Icons Behavior
+
+ document.addEventListener('DOMContentLoaded', function () {
+  const floatingContact = document.querySelector('.floating-contact');
+  if (!floatingContact) return;
+
+  const backTopBtn = document.getElementById('back-top');
+  let lastScrollTop = 0;
+  let areIconsVisible = true;
+
+  floatingContact.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+
+  window.addEventListener('scroll', function () {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Show/hide back-to-top button
+    if (backTopBtn) {
+      if (scrollTop > 300) {
+        backTopBtn.style.opacity = '1';
+        backTopBtn.style.pointerEvents = 'auto';
+      } else {
+        backTopBtn.style.opacity = '0';
+        backTopBtn.style.pointerEvents = 'none';
+      }
+    }
+
+    // Don't do anything if we're at the top of the page
+    if (scrollTop <= 100) {
+      floatingContact.style.transform = 'translateY(0)';
+      floatingContact.style.opacity = '1';
+      areIconsVisible = true;
+      lastScrollTop = scrollTop;
+      return;
+    }
+
+    // Hide when scrolling down, show when scrolling up
+    if (scrollTop > lastScrollTop && areIconsVisible) {
+      // Scrolling down
+      floatingContact.style.transform = 'translateY(100px)';
+      floatingContact.style.opacity = '0';
+      areIconsVisible = false;
+    } else if (scrollTop < lastScrollTop && !areIconsVisible) {
+      // Scrolling up
+      floatingContact.style.transform = 'translateY(0)';
+      floatingContact.style.opacity = '1';
+      areIconsVisible = true;
+    }
+
+    lastScrollTop = scrollTop;
+  });
+});
+
+</script>
+</body>
+</html>
