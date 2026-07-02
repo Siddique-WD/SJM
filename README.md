@@ -8,33 +8,16 @@ A single-page, richly animated bilingual (Tamil/English) marketing website for a
 
 | | |
 |---|---|
-| **Type** | Static single-page website (`index.html`) |
+| **Type** | Static single-page website  |
 | **Purpose** | Lead generation and service showcase for an astrology consultancy |
 | **Languages** | Tamil (`ta`) primary content language, English UI labels |
 | **Styling** | Tailwind CSS (CDN / Play CDN) + custom CSS |
 | **Interactivity** | Vanilla JavaScript (no framework, no bundler) |
-| **Form Backend** | [Web3Forms](https://web3forms.com) (no server required) |
 | **Fonts** | Cinzel, Lato, Noto Sans Tamil (Google Fonts) |
 | **Icons** | Font Awesome 5.15.4 |
 | **Hosting** | Any static host (GitHub Pages, Netlify, Vercel, cPanel, etc.) |
 
 ---
-
-## 📁 Structure
-
-```
-sivaanandha-jodhida-maiyyam/
-├── index.html                      # Entire site: markup, styles, and scripts
-├── assets/
-│   ├── Yogi sivaanandha jothidar1.svg   # About section portrait
-│   ├── Google_2015_logo.svg             # Google Reviews badge
-│   ├── S yuvarani.png                   # Review avatar
-│   ├── Logaa.png                        # Review avatar
-│   └── Jaya Giri.png                    # Review avatar
-└── README.md
-```
-
-> The project currently lives as **one self-contained HTML file** — all CSS is in a `<style>` block in `<head>`, and all JavaScript is in a `<script>` block before `</body>`. This keeps deployment trivial (just upload `index.html` + `assets/`).
 
 ### Page Sections (in order)
 1. **Navbar** — sticky glass navbar with mobile hamburger menu
@@ -102,27 +85,8 @@ tailwind.config = {
 
 > ⚠️ Note: Using the Play CDN means Tailwind compiles in the browser at runtime. For production performance, consider migrating to the Tailwind CLI or PostCSS build so only used utility classes ship in the final CSS.
 
----
 
-## 🧱 Website Components
-
-| Component | Description |
-|---|---|
-| **Navbar** | Fixed, glassmorphic (`nav-glass`), collapses into animated hamburger menu on mobile |
-| **Mandala Background** | Layered rotating SVG rings/petals (`mandala-outer/mid/inner`) behind hero |
-| **Star Field** | CSS `radial-gradient` layers simulating scattered stars |
-| **Hero Stats** | Animated count-up numbers (Years, Consultations, Satisfaction %) via `IntersectionObserver` |
-| **Services Swiper** | Custom 3D coverflow carousel — drag, touch-swipe, dot navigation, autoplay every 6s |
-| **Featured Card (Birth PDF)** | Pricing card with animated conic-gradient glow ring border |
-| **Matchmaking Section** | Porutham checklist + step-by-step process + heart/spark particle burst on CTA click |
-| **About Section** | Circular photo frame with layered gold rings, bio text, trust badges |
-| **Google Reviews** | Review cards with avatar, 5-star rating, expandable text (`Read More` / `Read Less`) |
-| **Contact Form** | Multi-field enquiry form (name, mobile, service, DOB, birth time/place, message) submitted via `fetch()` to Web3Forms, with success/error states |
-| **Trust Badges** | Pill-shaped indicators (Online Consultation, Quick Service, 100% Satisfaction) |
-| **Footer** | Brand name, copyright, social icon row, quick nav links, Tamil tagline |
-| **Floating Buttons** | Fixed bottom-right Call and WhatsApp buttons that auto-hide on scroll-down, reappear on scroll-up |
-
----
+Website components 
 
 ## 🎨 CSS Implementation
 
