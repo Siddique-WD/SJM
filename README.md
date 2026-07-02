@@ -59,47 +59,7 @@ No package manager or build tool is required. All dependencies are loaded via CD
 | **Tailwind CSS** | `https://cdn.tailwindcss.com` | Utility-first styling (Play CDN, JIT in-browser) |
 | **Google Fonts** | `fonts.googleapis.com` | Cinzel, Lato, Noto Sans Tamil |
 | **Font Awesome 5.15.4** | `cdnjs.cloudflare.com` | Icon set (phone, WhatsApp, social, UI icons) |
-| **Web3Forms API** | `api.web3forms.com/submit` | Contact form submission (no backend needed) |
 
-There is **no Node.js, npm, or bundler dependency** — the site runs by opening `index.html` in any browser or serving the folder statically.
-
----
-
-## 🚀 Build & Installation
-
-Since this is a static site with CDN-loaded dependencies, there is no build step.
-
-### Option 1 — Run locally
-```bash
-git clone <your-repo-url>
-cd sivaanandha-jodhida-maiyyam
-# just open the file directly
-open index.html        # macOS
-start index.html        # Windows
-```
-
-### Option 2 — Local dev server (recommended for testing forms/assets)
-```bash
-# Python
-python3 -m http.server 8000
-
-# Node (if installed)
-npx serve .
-```
-Then visit `http://localhost:8000`.
-
-### Option 3 — Deploy
-Upload `index.html` and the `assets/` folder to any static host:
-- **GitHub Pages** — push to a repo, enable Pages on `main` branch
-- **Netlify / Vercel** — drag-and-drop deploy or connect the repo
-- **Traditional hosting** — upload via FTP/cPanel
-
-### ⚠️ Required Configuration Before Going Live
-- Replace the Web3Forms `access_key` value in the form's hidden input with your own key from [web3forms.com](https://web3forms.com).
-- Update phone number, WhatsApp number, Google Maps link, and social media URLs (currently hardcoded in Contact, Footer, and Floating Buttons sections).
-- Add real image files to `assets/` matching the filenames referenced in the code.
-
----
 
 ## 🎨 Tailwind Configuration
 
